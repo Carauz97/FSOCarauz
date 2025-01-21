@@ -1,0 +1,23 @@
+---
+config:
+  theme: neo-dark
+---
+sequenceDiagram
+  participant browser as browser
+  participant server as server
+  Note right of browser:  The user type "uwu" in text field and then click on save button
+  browser ->> server: POST https://studies.cs.helsinki.fi/exampleapp/new_note
+  Note right of browser:  note: uwu
+  server ->> browser: RESPONSE: HTTP 302
+  Note right of browser:  Code 302 causes the server to request to reload the page again
+  browser ->>+ server: GET https://studies.cs.helsinki.fi/exampleapp/notes
+  server -->>- browser: HTML document
+  browser ->>+ server: GET https://studies.cs.helsinki.fi/exampleapp/main.css
+  server -->>- browser: the css file
+  browser ->>+ server: GET https://studies.cs.helsinki.fi/exampleapp/main.js
+  server -->>- browser: the JavaScript file
+  Note right of browser: The browser starts executing the JavaScript code that fetches the JSON from the server
+  browser ->>+ server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
+  Note right of browser:  The server returns the update JSON file content with my last entry
+  server -->>- browser: {content: "uwu", date: "2025-01-21T21:44:58.292Z"}
+  Note right of browser: The browser executes the callback function that renders the notes in html
