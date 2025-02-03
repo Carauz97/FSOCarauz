@@ -12,22 +12,38 @@ const Header = (props) =>{
 
 }
 
+const Part = ({course, exercise}) =>{
+
+  return(
+    <>
+  <h1>{course}</h1>
+    <p>
+     {exercise}
+    </p>
+    </>
+    )
+    
+  }
+
 const Content = ({parts})=>{
 
   return(
     <>
-
 {parts.map((part,index)=>(
-<div key={index}>
-<p>
-{part.name} {part.exercises}
-</p>
-</div>
-    ))}
-   
- 
-  </>);
+
+  <div key={index}>
+
+  <Part course={part.name} exercise={part.exercises} />
+  </div>
+))}
+
+
+  </>
+  )
 }
+
+
+
 
 const Total = ({parts}) =>{
 
