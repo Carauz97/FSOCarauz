@@ -47,15 +47,11 @@ const Content = ({parts})=>{
 
 const Total = ({parts}) =>{
 
-  let total=0;
+  const exercises= parts.map(value =>value.exercises)
 
-for (let index = 0; index < parts.length; index++) {
+  const total= exercises.reduce((anterior, actual) => anterior + actual, 0);
 
- total =total + parts[index].exercises;
-  console.log(total);
-}
-
-console.log("total:" + total)
+console.log('Number of exercises: '+total)
   return(
     <>    
     <p>Number of exercises {total}</p>
@@ -67,30 +63,29 @@ console.log("total:" + total)
 
 const App = () => {
 
-    const course = 'Half Stack application development'
-    const part1 = {
+  const course = 'Half Stack application development'
+  const parts = [
+    {
       name: 'Fundamentals of React',
       exercises: 10
-    }
-    const part2 = {
+    },
+    {
       name: 'Using props to pass data',
       exercises: 7
-    }
-    const part3 = {
+    },
+    {
       name: 'State of a component',
       exercises: 14
     }
- 
+  ]
 
 
 
   return (
     <div>
-      <Header course={course} />
-    <Part course={part1.name} exercise={part1.exercises}/>
-    <Part course={part2.name} exercise={part2.exercises}/>
-    <Part course={part3.name} exercise={part3.exercises}/>
-    <p>Number of exercises {part1.exercises+part2.exercises+part3.exercises} </p>
+    <Header course={course} />
+   <Content  parts={parts} />
+   <Total parts={parts}/>
     </div>
   )
 }
