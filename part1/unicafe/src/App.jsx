@@ -1,8 +1,6 @@
 import { useState } from 'react'
 
 
-
-
 const Button = (props) => {
 
  
@@ -25,6 +23,10 @@ const App = () => {
   const valor = {good, neutral, bad};
   console.log("reviews: ", valor); 
 
+  const total = good + neutral + bad;
+  const average = good + neutral + bad > 0 ? (good - bad) / (good + neutral + bad) :0 ;
+  const positive = good + neutral + bad > 0 ? (good / (good + neutral + bad)) * 100:0;
+
   return (
     <div>
       <h2>Reviews</h2>
@@ -42,8 +44,16 @@ const App = () => {
         <p>Bad: {bad}</p>
         <p>Neutral: {neutral}</p>
         <p>Good: {good}</p>
+        <p>All:{total}</p>
       </div>
 
+      <div>
+      <h2>Average</h2>
+        <p> {average} </p>
+      </div>
+
+      <h2>Positive</h2>
+      <p>{positive} %</p>
     </div>
   )
 }
