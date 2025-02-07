@@ -23,7 +23,7 @@ const Statistics = (props) => {
       <>
        <div>
        <h2>
-           Statistics
+          Statistics
          </h2>
          <p>Bad: {bad}</p>
          <p>Neutral: {neutral}</p>
