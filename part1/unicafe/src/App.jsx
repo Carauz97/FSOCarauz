@@ -1,6 +1,51 @@
 import { useState } from 'react'
 
 
+const Statistics = (props) => {
+
+
+  if (props.good + props.neutral + props.bad === 0) {
+    return (
+      <div>
+        <h2>Statistics</h2>
+        <p>No feedback given yet</p>
+      </div>)
+    
+  }else{
+    const good = props.good;
+    const neutral = props.neutral;
+    const bad = props.bad;
+  
+    const total = good + neutral + bad;
+    const average = good + neutral + bad > 0 ? (good - bad) / (good + neutral + bad) :0 ;
+    const positive = good + neutral + bad > 0 ? (good / (good + neutral + bad)) * 100:0;
+    return(
+      <>
+       <div>
+       <h2>
+           Statistics
+         </h2>
+         <p>Bad: {bad}</p>
+         <p>Neutral: {neutral}</p>
+         <p>Good: {good}</p>
+         <p>All:{total}</p>
+       </div>
+     
+       <div>
+       <h2>Average</h2>
+         <p> {average} </p>
+       </div>
+     
+      <div>
+      <h2>Positive</h2>
+      <p>{positive} %</p>
+      </div></>)
+  }
+
+
+
+}
+
 const Button = (props) => {
 
  
@@ -23,37 +68,16 @@ const App = () => {
   const valor = {good, neutral, bad};
   console.log("reviews: ", valor); 
 
-  const total = good + neutral + bad;
-  const average = good + neutral + bad > 0 ? (good - bad) / (good + neutral + bad) :0 ;
-  const positive = good + neutral + bad > 0 ? (good / (good + neutral + bad)) * 100:0;
 
   return (
     <div>
       <h2>Reviews</h2>
-     
+
       <Button handleClick={() => setBad(bad + 1)} text='bad :(' />
       <Button handleClick={() => setNeutral(neutral + 1)} text='neutral :|' />
-      <Button handleClick={() => setGood(good + 1)} text='good :)' />
+      <Button handleClick={() => setGood(good + 1)} text='good :)' /> 
+      <Statistics {...valor}/>
 
-    
-
-      <div>
-      <h2>
-          Statistics
-        </h2>
-        <p>Bad: {bad}</p>
-        <p>Neutral: {neutral}</p>
-        <p>Good: {good}</p>
-        <p>All:{total}</p>
-      </div>
-
-      <div>
-      <h2>Average</h2>
-        <p> {average} </p>
-      </div>
-
-      <h2>Positive</h2>
-      <p>{positive} %</p>
     </div>
   )
 }
