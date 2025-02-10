@@ -10,36 +10,49 @@ const Statistics = (props) => {
         <h2>Statistics</h2>
         <p>No feedback given yet</p>
       </div>)
-    
-  }else{
+
+  } else {
     const good = props.good;
     const neutral = props.neutral;
     const bad = props.bad;
-  
+
     const total = good + neutral + bad;
-    const average = good + neutral + bad > 0 ? (good - bad) / (good + neutral + bad) :0 ;
-    const positive = good + neutral + bad > 0 ? (good / (good + neutral + bad)) * 100:0;
-    return(
+    const average = good + neutral + bad > 0 ? (good - bad) / (good + neutral + bad) : 0;
+    const positive = good + neutral + bad > 0 ? (good / (good + neutral + bad)) * 100 : 0;
+    return (
       <>
-       <div>
-       <h2>
-          Statistics
-         </h2>
-      <StatisticLine text="Bad:" value={bad}/>
-      <StatisticLine text="Neutral:" value={neutral}/>
-      <StatisticLine text="Good:" value={good}/>
-      <StatisticLine text="Total:" value={total}/>
-       </div>
-     
-       <div>
-       <h2>Average</h2>
-       <StatisticLine text="" value={average}/>
-       </div>
-     
-      <div>
-      <h2>Positive</h2>
-      <StatisticLine text="" value={positive} symbol="%"/>
-      </div></>)
+
+        <table>
+          <tbody>
+            <tr>
+              <td colSpan="2">   <h2>
+                Statistics
+              </h2></td>
+            </tr>
+            <StatisticLine text="Bad:" value={bad} />
+            <StatisticLine text="Neutral:" value={neutral} />
+            <StatisticLine text="Good:" value={good} />
+            <StatisticLine text="Total:" value={total} />
+          </tbody>
+        </table>
+        <table>
+          <tbody>
+            <tr>
+              <td colSpan="2"> <h2>Average</h2></td>
+            </tr>
+            <StatisticLine text="" value={average} />
+          </tbody>
+        </table>
+
+        <table>
+          <tbody>
+            <tr>
+              <td colSpan="2">   <h2>Positive</h2></td>
+            </tr>
+            <StatisticLine text="" value={positive} symbol="%" />
+          </tbody>
+        </table>
+      </>)
   }
 
 
@@ -48,7 +61,7 @@ const Statistics = (props) => {
 
 const Button = (props) => {
 
- 
+
   return (
     <button onClick={props.handleClick}>
       {props.text}
@@ -56,14 +69,18 @@ const Button = (props) => {
   )
 }
 
-const StatisticLine = (props)=>{
+const StatisticLine = (props) => {
 
   const text = props.text;
-const value = props.value;
-const symbol = props.symbol;
+  const value = props.value;
+  const symbol = props.symbol;
 
-  return(
-    <p>{text} {value} {symbol}</p>
+  return (
+    <tr>
+      <td><p>{text}</p></td>
+      <td><p>{value}{symbol}</p> </td>
+
+    </tr>
   )
 }
 
@@ -76,8 +93,8 @@ const App = () => {
   const [neutral, setNeutral] = useState(0)
   const [bad, setBad] = useState(0)
 
-  const valor = {good, neutral, bad};
-  console.log("reviews: ", valor); 
+  const valor = { good, neutral, bad };
+  console.log("reviews: ", valor);
 
 
   return (
@@ -86,8 +103,8 @@ const App = () => {
 
       <Button handleClick={() => setBad(bad + 1)} text='bad :(' />
       <Button handleClick={() => setNeutral(neutral + 1)} text='neutral :|' />
-      <Button handleClick={() => setGood(good + 1)} text='good :)' /> 
-      <Statistics {...valor}/>
+      <Button handleClick={() => setGood(good + 1)} text='good :)' />
+      <Statistics {...valor} />
 
     </div>
   )
