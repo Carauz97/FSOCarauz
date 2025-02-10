@@ -25,20 +25,20 @@ const Statistics = (props) => {
        <h2>
           Statistics
          </h2>
-         <p>Bad: {bad}</p>
-         <p>Neutral: {neutral}</p>
-         <p>Good: {good}</p>
-         <p>All:{total}</p>
+      <StatisticLine text="Bad:" value={bad}/>
+      <StatisticLine text="Neutral:" value={neutral}/>
+      <StatisticLine text="Good:" value={good}/>
+      <StatisticLine text="Total:" value={total}/>
        </div>
      
        <div>
        <h2>Average</h2>
-         <p> {average} </p>
+       <StatisticLine text="" value={average}/>
        </div>
      
       <div>
       <h2>Positive</h2>
-      <p>{positive} %</p>
+      <StatisticLine text="" value={positive} symbol="%"/>
       </div></>)
   }
 
@@ -53,6 +53,17 @@ const Button = (props) => {
     <button onClick={props.handleClick}>
       {props.text}
     </button>
+  )
+}
+
+const StatisticLine = (props)=>{
+
+  const text = props.text;
+const value = props.value;
+const symbol = props.symbol;
+
+  return(
+    <p>{text} {value} {symbol}</p>
   )
 }
 
