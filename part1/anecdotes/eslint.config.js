@@ -33,6 +33,11 @@ export default [
         'warn',
         { allowConstantExport: true },
       ],
+      "eslint.codeAction.disableRuleComment": {
+        "enable": true
+      }
+      
     },
+    
   },
 ]

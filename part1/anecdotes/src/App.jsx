@@ -3,8 +3,36 @@ import { useState } from 'react'
 const Button = (props) => (<button onClick={props.handleClick}>{props.text}</button>)
 
 
-const AnecdotesPanel = (props) => (<div><p>{props.anecdotes[props.selected]}</p>
+const AnecdotesPanel = (props) => (<div><h2>Anecdotes of the day</h2><p>{props.anecdotes[props.selected]}</p>
+
 <p>has {props.votes[props.selected]} votes.</p></div>)
+
+
+const MostAnecdote = (props) =>{
+
+  
+
+  const votes = props.votes;
+  const mayor = Math.max(...votes);
+
+  if (Array.isArray(votes) != true) {
+    throw new Error({name:'type error', message:'It needs an Array'}) 
+  }
+  if (mayor != 0) {
+    return(
+      <div>
+      <h2>Anecdote with most votes</h2>
+    
+    {props.anecdotes[votes.indexOf(mayor)]}
+      </div>
+    
+    )
+  }else{
+    return(  <h2>There are not votes</h2>
+    )
+  }
+
+}
 
 
 function App() {
@@ -49,14 +77,13 @@ function App() {
       setVote(copy)
     }
   }
-
-
   return (
     <div>
       <Button handleClick={MixSelected(anecdotes)} text="Random"></Button>
       <Button handleClick={Vote(selected)} text="Vote"></Button>
       <AnecdotesPanel
         anecdotes={anecdotes} selected={selected} votes={votes}></AnecdotesPanel>
+        <MostAnecdote votes={votes} anecdotes={anecdotes}></MostAnecdote>
 
     </div>
   )
