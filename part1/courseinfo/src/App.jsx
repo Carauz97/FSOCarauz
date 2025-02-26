@@ -1,95 +1,58 @@
+import Courses from "./components/Course"
 
 //hello friend :) i'm CZ
 
-const Header = (props) =>{
-
-  return(
-
-     <div>
-     <h1>{props.name}</h1>
-     </div>
-  )
-
-}
-
-const Part = ({course, exercise}) =>{
-
-  return(
-    <>
-  <h1>{course}</h1>
-    <p>
-     {exercise}
-    </p>
-    </>
-    )
-    
-  }
-
-const Content = ({parts})=>{
-
-  return(
-    <>
-{parts.map((part,index)=>(
-
-  <div key={index}>
-
-  <Part course={part.name} exercise={part.exercises} />
-  </div>
-))}
-
-
-  </>
-  )
-}
-
-
-
-
-const Total = ({parts}) =>{
-
-  const exercises= parts.map(value =>value.exercises)
-
-  const total= exercises.reduce((anterior, actual) => anterior + actual, 0);
-
-console.log('Number of exercises: '+total)
-  return(
-    <>    
-    <p>Number of exercises {total}</p>
-    </>
-
-  )
-}
 
 
 const App = () => {
+  const courses = [
+    {
+      name: 'Half Stack application development',
+      id: 1,
+      parts: [
+        {
+          name: 'Fundamentals of React',
+          exercises: 10,
+          id: 1
+        },
+        {
+          name: 'Using props to pass data',
+          exercises: 7,
+          id: 2
+        },
+        {
+          name: 'State of a component',
+          exercises: 14,
+          id: 3
+        },
+        {
+          name: 'Redux',
+          exercises: 11,
+          id: 4
+        }
+      ]
+    }, 
+    {
+      name: 'Node.js',
+      id: 2,
+      parts: [
+        {
+          name: 'Routing',
+          exercises: 3,
+          id: 1
+        },
+        {
+          name: 'Middlewares',
+          exercises: 7,
+          id: 2
+        }
+      ]
+    }
+  ]
 
-  const course = {
-    name: 'Half Stack application development',
-    parts: [
-      {
-        name: 'Fundamentals of React',
-        exercises: 10
-      },
-      {
-        name: 'Using props to pass data',
-        exercises: 7
-      },
-      {
-        name: 'State of a component',
-        exercises: 14
-      }
-    ]
-  }
-
-
-
-  return (
-    <div>
-    <Header course={course} />
-   <Content  parts={course.parts} />
-   <Total parts={course.parts}/>
-    </div>
-  )
+  return <>
+  <h1>WEB DEV CV</h1><Courses courses={courses} />
+  </>
 }
 
 export default App
