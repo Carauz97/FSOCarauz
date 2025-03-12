@@ -1,16 +1,18 @@
 
+
+const Person = (props) => {
+
+  const person = props.person
+  return (<tr>
+    <td>{person.name}</td>
+    <td>{person.number}</td>
+  </tr>)
+}
+
 const Phonebook = (props) => {
 
   const personstoShow = props.personstoShow
 
-  const Person = (props) => {
-
-    const person = props.person
-    return (<tr>
-      <td>{person.name}</td>
-      <td>{person.number}</td>
-    </tr>)
-  }
   return (
     <table>
       <tbody>
