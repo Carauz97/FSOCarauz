@@ -3,6 +3,8 @@
 const Person = (props) => {
 
   const person = props.person
+
+
   return (<tr>
     <td>{person.name}</td>
     <td>{person.number}</td>
@@ -10,6 +12,7 @@ const Person = (props) => {
 }
 
 const Phonebook = (props) => {
+
 
   const personstoShow = props.personstoShow
 

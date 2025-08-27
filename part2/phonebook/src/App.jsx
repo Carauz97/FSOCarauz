@@ -1,45 +1,43 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import AddPanel from './modules/AddPanel'
 import Search from './modules/Search'
 import Phonebook from './modules/Phonebook'
-import axios from 'axios'
+import personServices from '/src/services/persons'
+import { useEffect } from 'react'
+import "./index.css"
+
+
+
+
 
 
 const App = () => {
   const [persons, setPersons] = useState([])
-  const [personstoShow, setPersonstoShow] = useState(persons)
+  const [filteredPersons, setFilteredPersons] = useState([])
 
 
+  console.log('rendered App ')
 
-  const hook = () => {
-console.log('data');
-
-    axios
-      .get('http://localhost:3001/persons')
-      .then(response => {
-        setPersons(response.data)
-        console.log('data',response.data);
-      }).catch((error) => {
-        console.error('Error fetching data:', error);
-      });
-   
-  }
-  console.log('rendered');
-  useEffect(hook, [])
 
   useEffect(() => {
-    setPersonstoShow(persons);
-  }, [persons]);
+
+    personServices.getAll().then(persons => {
+      setPersons(persons)
+      setFilteredPersons(persons)
+      console.log('rendered Phonebook', persons)
+    }).catch(error => console.error('error:', error.message))
+
+  }, [])
 
   return (
     <div>
       <h2>Phonebook</h2>
-      <AddPanel {...{ persons, setPersons, setPersonstoShow }}></AddPanel>
+      <AddPanel {...{ persons, setPersons, setFilteredPersons }}></AddPanel>
       <h2>Filter</h2>
-      <Search {...{ persons, setPersonstoShow }}></Search>
+      <Search {...{ persons, setFilteredPersons }}></Search>
       <h2>Persons</h2>
       <div>Saved: {persons.length}</div>
-      <Phonebook personstoShow={personstoShow}></Phonebook>
+      <Phonebook personstoShow={filteredPersons}></Phonebook>
     </div>
   )
 }

@@ -4,7 +4,7 @@ import { useState } from 'react'
 /*a module used to show a specific persons displays in contact list.*/
 const Search = (props) => {
     const [newSearch, setSearch] = useState('')
-    const setPersonstoShow = props.setPersonstoShow
+    const setPersonstoShow = props.setFilteredPersons
     const persons = props.persons
 
 
@@ -18,7 +18,7 @@ const Search = (props) => {
 
         setSearch(searchValue)
 
-        const search = searchValue.trim() === '' ? persons : persons.filter(person => person.name.toLowerCase() === searchValue.toLowerCase())
+        const search = searchValue.trim() === '' ?persons : persons.filter(person => person.name.toLowerCase().includes(searchValue.toLowerCase()))
         setPersonstoShow(search)
 
     }
