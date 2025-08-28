@@ -20,8 +20,17 @@ const create = newPerson =>{
 }
 
 
+const update = (id, updatedPerson) =>{
+  return axios.put(`${apiUrl}/${id}`,updatedPerson)
+}
+
+const supr = (id) =>{
+return axios.delete(`${apiUrl}/${id}`)
+}
 
 
-export default {getAll,create}
+
+
+export default {getAll,create,update,supr}
 
 
