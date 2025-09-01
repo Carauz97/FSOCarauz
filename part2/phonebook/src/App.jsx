@@ -36,8 +36,8 @@ const App = () => {
       <h2>Filter</h2>
       <Search {...{ persons, setFilteredPersons }}></Search>
       <h2>Persons</h2>
-      <div>Saved: {persons.length}</div>
-      <Phonebook personstoShow={filteredPersons}></Phonebook>
+      <div style={{display:'flex'}}>Saved: {persons.length}</div>
+      <Phonebook {...{persons, setPersons,setFilteredPersons,filteredPersons }}></Phonebook>
     </div>
   )
 }

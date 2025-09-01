@@ -44,7 +44,7 @@ const AddPanel = (props) => {
         e.preventDefault()
 
         const newPerson = {
-            id: persons.length + 1,
+       
             name: newName,
             number: newNum,
         }
